@@ -11,6 +11,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
+    <EditText
+        android:id="@+id/ipbox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:onClick="setIp"
+        android:layout_centerHorizontal="true"
+        android:text="Set IP"
+        android:layout_below="@id/ipbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
     <Button
         android:text="Center"
         android:onClick="center"

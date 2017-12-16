@@ -8,6 +8,7 @@ import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,6 +23,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     private SensorManager sensorManager;
     private Sensor sensor;
     private TextView textView;
+    private EditText editText;
     private DatagramSocket socket;
     private InetAddress ip;
     private int port=6666;
@@ -48,8 +50,10 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             Toast.makeText(this, "Orientation service not supported", Toast.LENGTH_LONG).show();
         }
         textView=findViewById(R.id.text_box);
+        editText=findViewById(R.id.ipbox);
+
         try {
-            discoverServer(null);
+//            discoverServer(null);
 
             ip=InetAddress.getByName("192.168.1.105");
             socket=new DatagramSocket();
@@ -104,6 +108,15 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         offYaw =translateAngle(orientations[0]);
 //        offPitch =translateAngle(orientations[1]);
         offRoll =translateAngle(orientations[2]);
+    }
+
+    public void setIp(View v) {
+        try {
+            ip=InetAddress.getByName(editText.getText().toString());
+        }
+        catch(Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void discoverServer(View v) {
